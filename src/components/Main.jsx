@@ -10,19 +10,23 @@ export default function Main() {
   const [authorInfo, setAuthorInfo] = useState(authorInput);
 
   const formSetter = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setAuthorInfo({
       ...authorInfo,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     });
+  };
+  const formSubmit = (e) => {
+    e.preventDefault();
+    console.table(authorInfo);
   };
   return (
     <div className="container-sm d-flex flex-column align-items-center">
       <h1>Form Compiler</h1>
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">Article info</h5>
-          <form>
+      <form onSubmit={formSubmit}>
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">Article info</h5>
             <p className="fw-bold m-0">Author</p>
             <div className="card-text">
               <div className="input-group mb-3">
@@ -79,12 +83,10 @@ export default function Main() {
                 L'articolo deve essere pubblico?
               </label>
             </div>
-            <button href="#" className="btn btn-primary">
-              Submit
-            </button>
-          </form>
+            <button className="btn btn-primary">Submit</button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
