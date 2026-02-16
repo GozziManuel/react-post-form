@@ -3,12 +3,19 @@ const authorInput = {
   author: "",
   title: "",
   body: "",
-  public: "",
+  public: false,
 };
 
 export default function Main() {
   const [authorInfo, setAuthorInfo] = useState(authorInput);
 
+  const formSetter = (e) => {
+    const { name, value } = e.target;
+    setAuthorInfo({
+      ...authorInfo,
+      [name]: value,
+    });
+  };
   return (
     <div className="container-sm d-flex flex-column align-items-center">
       <h1>Form Compiler</h1>
@@ -23,6 +30,10 @@ export default function Main() {
                   type="text"
                   className="form-control"
                   aria-describedby="basic-addon1"
+                  //
+                  onChange={formSetter}
+                  name="author"
+                  value={authorInfo.author}
                 />
               </div>
             </div>
@@ -34,6 +45,10 @@ export default function Main() {
                   type="text"
                   className="form-control"
                   aria-describedby="basic-addon1"
+                  //
+                  onChange={formSetter}
+                  name="title"
+                  value={authorInfo.title}
                 />
               </div>
             </div>
@@ -43,6 +58,10 @@ export default function Main() {
               <textarea
                 className="form-control"
                 aria-label="With textarea"
+                //
+                onChange={formSetter}
+                name="body"
+                value={authorInfo.body}
               ></textarea>
             </div>
 
@@ -50,8 +69,11 @@ export default function Main() {
               <input
                 className="form-check-input"
                 type="checkbox"
-                value=""
                 id="checkIndeterminate"
+                //
+                onChange={formSetter}
+                name="public"
+                checked={authorInfo.public}
               />
               <label className="form-check-label">
                 L'articolo deve essere pubblico?
