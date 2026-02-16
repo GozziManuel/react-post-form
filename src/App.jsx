@@ -1,3 +1,9 @@
+import Main from "./components/Main";
+
 export default function App() {
-  return <h1>Demo Vite & React</h1>;
+  return (
+    <>
+      <Main />
+    </>
+  );
 }
