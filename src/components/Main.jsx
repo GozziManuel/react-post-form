@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 const authorInput = {
   author: "",
@@ -19,7 +20,11 @@ export default function Main() {
   const formSubmit = (e) => {
     e.preventDefault();
     console.table(authorInfo);
+    axios
+      .post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", authorInfo)
+      .then(alert("Form Inviato correttamente"));
   };
+
   return (
     <div className="container-sm d-flex flex-column align-items-center">
       <h1>Form Compiler</h1>
